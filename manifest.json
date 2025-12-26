@@ -1,0 +1,13 @@
+{
+  "Name": "Vertical Nav Mesh",
+  "Version": "1.0",
+  "Id": "Vertical Nav Mesh",
+  "MinimumGameVersion": "1.0.6.0",
+  "Description": "Adds vertical edges to the navigation mesh for ladders",
+  "RequiredMods": [
+    {
+      "Id": "Harmony",
+      "MinimumVersion": "2.4.0"
+    }
+  ]
+}

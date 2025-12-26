@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 85e0a2c8cb893724596284af91b2db94
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 738743559, guid: e35e6382475ce13439947ab16a0dbdb7, type: 3}
+  _createMeshAsset: 1

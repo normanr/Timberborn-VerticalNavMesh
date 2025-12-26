@@ -1,0 +1,6 @@
+{
+  "VerticalNavMeshSpec": {
+    "Model": "Markers/PathMarkers/PathMarkerV",
+    "Material": "Markers/PathMarkers/PathMarker"
+  }
+}

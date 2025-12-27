@@ -31,18 +31,20 @@ namespace VerticalNavMesh {
     [HarmonyPrefix]
     public static bool AddTilePrefix(DistrictPathNavRangeDrawer __instance,
                                      WeightedCoordinates node) {
-      bool MultipleConnections(Vector3Int coordinates) {
+      bool MultipleConnections(Vector3Int coordinates, bool checkBelow = false) {
         bool d = __instance.IsConnected(coordinates, coordinates.Down());
         bool l = __instance.IsConnected(coordinates, coordinates.Left());
         bool u = __instance.IsConnected(coordinates, coordinates.Up());
         bool r = __instance.IsConnected(coordinates, coordinates.Right());
-        return (d && (l || u || r)) || (l && (u || r)) || (u && r);
+        bool b = __instance.IsConnected(coordinates, coordinates.Below());
+        return (d && (l || u || r)) || (l && (u || r)) || (u && r) || 
+               (checkBelow && b && (d || l || u || r));
       }
 
       Vector3Int coordinates = node.Coordinates;
       if (__instance.IsTileVisible(coordinates) && __instance._levelVisibilityService.BlockIsVisible(coordinates)) {
         if (__instance.IsConnectedToPath(coordinates, coordinates.Above())) {
-          if (MultipleConnections(coordinates) || MultipleConnections(coordinates.Above())) {
+          if (MultipleConnections(coordinates, true) || MultipleConnections(coordinates.Above())) {
             __instance._regularMeshDrawer.Add(node);
             VerticalNavMeshDrawer.Singleton?.Add(node);
             return false;

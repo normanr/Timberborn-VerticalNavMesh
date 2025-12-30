@@ -37,8 +37,9 @@ namespace VerticalNavMesh {
         bool u = __instance.IsConnected(coordinates, coordinates.Up());
         bool r = __instance.IsConnected(coordinates, coordinates.Right());
         bool b = __instance.IsConnected(coordinates, coordinates.Below());
+        bool a = __instance.IsConnected(coordinates, coordinates.Above());
         return (d && (l || u || r)) || (l && (u || r)) || (u && r) || 
-               (checkBelow && b && (d || l || u || r));
+               (checkBelow && b && (a || d || l || u || r));
       }
 
       Vector3Int coordinates = node.Coordinates;
@@ -51,7 +52,7 @@ namespace VerticalNavMesh {
           }
         }
         if (__instance.IsConnectedToPath(coordinates, coordinates.Below())) {
-          if (MultipleConnections(coordinates) || MultipleConnections(coordinates.Below())) {
+          if (MultipleConnections(coordinates) || MultipleConnections(coordinates.Below(), true)) {
             __instance._regularMeshDrawer.Add(node);
             return false;
           }
